@@ -1,0 +1,27 @@
+@layout('layout')
+
+@section('content')
+  <h1 class="page-title">Register Page<h1>
+  <form method="post">
+  {{ csrfField() }}
+  <input type="text" name="username" placeholder="Username" id="">
+  @if(hasErrorFor('username'))
+  {{ getErrorFor('username')}}
+  @endif
+  
+  <br>
+  <input type="text" name="email" placeholder="Email Address" id="">
+    @if(hasErrorFor('email'))
+  {{ getErrorFor('email')}}
+  @endif
+  <br>
+  <input type="password" name="password" placeholder="Password" id="">
+    @if(hasErrorFor('password'))
+  {{ getErrorFor('password')}}
+  @endif
+  <br>
+  <button type="submit">Submit</button>
+  </form>
+@endsection
+
+
