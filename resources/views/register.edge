@@ -1,12 +1,16 @@
 @layout('layout')
-
+@section('head')
+<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Helpful Links</span>
+@endsection
 @section('content')
-  <h1 class="page-title">Register Page<h1>
-  <form method="post">
+  
+ 
+  <form style="text-align:center" method="post">
+  <h3 id="logo">Register</h3>
   {{ csrfField() }}
-  <input type="text" name="username" placeholder="Username" id="">
-  @if(hasErrorFor('username'))
-  {{ getErrorFor('username')}}
+  <input type="text" name="name" placeholder="Name" id="">
+  @if(hasErrorFor('name'))
+  {{ getErrorFor('name')}}
   @endif
   
   <br>
@@ -20,7 +24,7 @@
   {{ getErrorFor('password')}}
   @endif
   <br>
-  <button type="submit">Submit</button>
+  <button class="btn first" type="submit">Submit</button>
   </form>
 @endsection
 

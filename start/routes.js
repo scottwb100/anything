@@ -22,24 +22,35 @@ Route
 })
 .as('welcome')
 
-
+//************login ********************/
 
 Route.get("/login", ({request, response, view}) => {
     return view.render("login")
 })
 .as('login')
 Route
-.post('/login' , async ({request, response}) => {
-    let username = await request.input('username')
+.post('/login' , async ({request, response, auth}) => {
+    let email = await request.input('email')
     let password = await request.input('password')
     // search the database for the username and password
 
-    response.send('We have recieve your form submission.')
+    await auth.attempt(email, password)
+    return await response.redirect('/')
 
-    console.log(username, password)
 })
 
+//**************Log Out *****************/
 
+Route
+.get('/logout' , async ({request, response, auth}) => {
+    await auth.logout()
+    return await response.redirect('/')
+}).as('logout')
+
+
+
+
+// ************** Register *************/
 Route.get("/register", ({request, response, view}) =>{
     return view.render("register")
 })
@@ -64,3 +75,26 @@ Route.post('/register', async ({request, response}) =>{
 
 }).validator('StoreUser')
 
+//******************Offers Page ******************/
+Route.get('/offers', async ({request, response, view, auth})=>{
+try{
+    await auth.check()
+    console.log(await auth.check())
+    return view.render('offers')
+}catch(error){
+    console.log(error)
+    return await response.redirect('/login')
+}
+
+}).as('offers')
+
+
+
+
+
+//*****************Test page  **************/
+
+Route.get('/test', ({request, response, view}) =>{
+    return view.render('test')
+})
+.as('test')

@@ -1,11 +1,15 @@
 @layout('layout')
 
+@section('head')
+<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Helpful Links</span>
+@endsection
+
 @section('content')
-  <h1 class="page-title">Login Page<h1>
-  <form method="post">
+  <form style="text-align:center" method="post">
+  <h3 id="logo">Log In</h3>
   {{ csrfField() }}
-  <input type="text" name="username" placeholder="Username" id=""><br>
+  <input type="text" name="email" placeholder="Email" id=""><br>
   <input type="password" name="password" placeholder="Password" id=""><br>
-  <button type="submit">Submit</button>
+  <button class="btn first" type="submit">Submit</button>
   </form>
 @endsection

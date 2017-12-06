@@ -1,15 +1,49 @@
 <!DOCTYPE html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <html>
   <head>
     <title>Special Offers</title>
+<div id="topNav">
+    <div id="mySidenav" class="sidenav">
+
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <img src="https://pbs.twimg.com/profile_images/595488837041795072/04q43oeP.jpg" alt="" style="width:256px;height:256px;">
+        
+        <a href="{{route('welcome') }}">Special Offers</a>
+        @loggedIn
+        <a>Logged in as: {{auth.user.username}}</a>
+        <a href="{{route('offers') }}">Current Offers</a>
+        <a href="{{route('logout') }}">Log Out</a>
+        @else
+        <a href="{{route('login') }}">Log In</a>
+        <a href="{{route('register') }}">Register</a>
+        @endloggedIn
+        </div>
+</div>
+    @!section('head')
+    <link rel="stylesheet" type="text/css" href="./style.css">
+    
+    <script>
+    function openNav() {
+    document.getElementById("mySidenav").style.width = "250px";
+}
+
+function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+}
+</script>
+
   </head>
   <body>
+
     <header class="header">
-      <a href="{{route('welcome') }}" class="logo">Special Offers</a>
-      <a href="{{route('login') }}">login</a>
-      <a href="{{route('register') }}">register</a>
-    </header>
-  @!section('content')
+
+    
+ </header>
+        
+    </div>
+    
+    @!section('content')
     <footer class="footer">
       <span class="copyright">Copyright 2017 Arnold Clark Automobile Ltd. All Rights Reserved.</span>
     </footer>

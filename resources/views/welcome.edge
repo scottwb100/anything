@@ -1,5 +1,15 @@
 @layout('layout')
 
-@section('name')
-  <h1 class="page-title">Welcome</h1>
+@section('head')
+<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Helpful Links</span>
+<head>
+  <h3 id="logo"> 
+  @loggedIn
+  Welcome
+  {{auth.user.username}}
+  @else
+  Log In To View Offers!
+  @endloggedIn
+  </h3>
+  </head>
 @endsection
