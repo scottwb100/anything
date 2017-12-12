@@ -9,10 +9,15 @@
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
         <img src="https://pbs.twimg.com/profile_images/595488837041795072/04q43oeP.jpg" alt="" style="width:256px;height:256px;">
         
-        <a href="{{route('welcome') }}">Special Offers</a>
+        <a href="{{route('welcome') }}">Home</a>
+        <a href="{{route('404') }}">404 Page</a>
+
         @loggedIn
         <a>Logged in as: {{auth.user.username}}</a>
-        <a href="{{route('offers') }}">Current Offers</a>
+        <a href="{{route('addoffer') }}">Add Offer</a>
+        <a href="{{route('deleteoffers') }}">Delete Offer</a>
+        <a href="{{route('currentoffers') }}">Current Offers</a>
+        <a href="{{route('enquire') }}">Enquire About An Offer</a>
         <a href="{{route('logout') }}">Log Out</a>
         @else
         <a href="{{route('login') }}">Log In</a>
@@ -44,6 +49,7 @@ function closeNav() {
     </div>
     
     @!section('content')
+    
     <footer class="footer">
       <span class="copyright">Copyright 2017 Arnold Clark Automobile Ltd. All Rights Reserved.</span>
     </footer>

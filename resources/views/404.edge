@@ -1,0 +1,17 @@
+@layout('layout')
+@section('content')
+
+<form method="post" action="">
+
+  <h3 id="logo">404</h3>
+  {{ csrfField() }}
+  <label><h2>Oops, The page you were looking for doesn't exist.</h2></label>
+
+  <label>Error:</label>
+ 
+
+  <input type="submit" name="submit" value="Go To Home" />
+
+</form>
+
+@endsection

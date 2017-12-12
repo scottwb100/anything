@@ -4,10 +4,32 @@
 <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Helpful Links</span>
 <head>
   <h3 id="logo">Today's Offers!</h3>
-  </head>
+</head>
 @endsection
 
 @section('content')
-
-
+<div class="offers">
+@each(offer in offers)
+<div class="card">
+  <div class="cover">
+    <div class="price">&#163;{{offer.price}}</div>
+  </div>
+  <div class="content">
+    <span class="category">Offers</span>
+    <span class="options"><i class="fa fa-ellipsis-v"></i></span>
+    <h1>{{offer.name}}</h1>
+    <br>
+    <br>
+    <span class="reads">
+      <i class="fa fa-user-o"></i>Sold By: Arnold Clark
+    </span>
+  </div>
+  <div class="bid">
+    <span>Enquire about this offer</span>
+  </div>
+</div>
+@endeach
+</div>
 @endsection
+
+

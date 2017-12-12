@@ -15,6 +15,7 @@
 
 const Route = use('Route')
 const User = use('App/Models/User')
+const Offer = use('App/Models/Offer')
 
 Route
 .get('/' , ({request, response, view}) =>{
@@ -75,22 +76,53 @@ Route.post('/register', async ({request, response}) =>{
 
 }).validator('StoreUser')
 
-//******************Offers Page ******************/
-Route.get('/offers', async ({request, response, view, auth})=>{
-try{
-    await auth.check()
-    console.log(await auth.check())
-    return view.render('offers')
-}catch(error){
-    console.log(error)
-    return await response.redirect('/login')
-}
+//*********************Offers Page *****************/
 
-}).as('offers')
+Route.get('/currentoffers', async ({request, response, view}) =>{
+    const offers = (await Offer.query({}).fetch()).toJSON()
+    return view.render('offers', {offers})
+}).as('currentoffers')
 
 
 
+//****************** Add Offers Page ***************/
+Route.get('/addoffers', async ({request, response, view}) =>{
+    return view.render('addoffer')
+}).as('addoffer')
 
+
+Route.post('/addoffers', async({request, response}) =>{
+    let name = await request.input('name')
+    let price = await request.input('price')
+
+    const offer = new Offer()
+    offer.name = name
+    offer.price = price
+    
+    console.log(await offer.save())
+    return await response.redirect('offers')
+    
+
+}).validator('StoreOffer')
+
+
+//******************** Delete Offers ***************/
+Route.get('/deleteoffers', async ({request, response, view}) =>{
+    const offers = (await Offer.query({}).fetch()).toJSON()
+    return view.render('deleteoffer', {offers})
+}).as('deleteoffers')
+
+
+Route.post('/deleteoffers', async({request, response, view, auth}) =>{
+    const value = await request.input('ID')
+    const query = await Offer
+    .query()
+    .where('id', value)
+    .delete()
+    
+    console.log(value)
+    return response.redirect('/deleteoffers')
+})
 
 //*****************Test page  **************/
 
@@ -98,3 +130,16 @@ Route.get('/test', ({request, response, view}) =>{
     return view.render('test')
 })
 .as('test')
+
+
+//******************* 404 Page **************/
+
+
+Route.get('/404', ({request,response, view}) =>{
+    return view.render('404')
+}).as('404')
+
+
+Route.post('/404', ({request, response}) =>{
+    return response.redirect('/')
+})

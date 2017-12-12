@@ -1,0 +1,25 @@
+@layout('layout')
+
+@section('head')
+<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Helpful Links</span>
+@endsection
+@section('content')
+  
+ 
+  <form style="text-align:center" method="post">
+  <h3 id="logo">Add Offer</h3>
+  {{ csrfField() }}
+  <input type="text" name="name" placeholder="Offer Name" id="">
+  @if(hasErrorFor('name'))
+  {{ getErrorFor('name')}}
+  @endif
+  
+  <br>
+  <input type="double" name="price" placeholder="Price" id="">
+    @if(hasErrorFor('email'))
+  {{ getErrorFor('email')}}
+  @endif
+  <br>
+  <button class="btn first" type="submit">Submit</button>
+  </form>
+@endsection
