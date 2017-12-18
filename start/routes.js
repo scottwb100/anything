@@ -124,6 +124,20 @@ Route.post('/deleteoffers', async({request, response, view, auth}) =>{
     return response.redirect('/deleteoffers')
 })
 
+
+//****************** Enquire Page ***************/
+Route.get('/enquire', async({request, response, view}) =>{
+    return view.render('enquire')
+}).as('enquire')
+
+
+
+
+
+
+
+
+
 //*****************Test page  **************/
 
 Route.get('/test', ({request, response, view}) =>{
